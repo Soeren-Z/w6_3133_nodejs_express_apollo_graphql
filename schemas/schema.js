@@ -8,7 +8,7 @@ const movieSchema = gql`
         director_name: String!
         production_house: String!
         release_date: String!
-        rating: FlOAT!
+        rating: Float!
     }
 
     type Query {
@@ -23,16 +23,17 @@ const movieSchema = gql`
             director_name: String!
             production_house: String!
             release_date: String!
-            rating: FlOAT!
-        )
+            rating: Float!
+        ) : Movie
 
         updateMovie(
+            id: String!
             name: String
             director_name: String!
             production_house: String!
             release_date: String!
-            rating: FlOAT!
-        )
+            rating: Float!
+        ) : Movie
 
         deleteMovie(id: String!): Movie
     }

@@ -1,4 +1,5 @@
 import MovieModel from '../models/movie.js';
+import { GraphQLError } from "graphql";
 
 // Resolvers define the technique for fetching the types defined in the schema.
 
@@ -68,7 +69,7 @@ const movieResolvers = {
     },
     Mutation: {
         addMovie: async (_, args) => {
-            if (!args.name || !args.director_name || !args.production_house || args.release_date || args.rating) {
+            if (!args.name || !args.director_name || !args.production_house || !args.release_date || !args.rating) {
                 throw new GraphQLError("All parameters are required", {
                     extensions: {
                         code: "MISSING_PARAM",
@@ -99,7 +100,7 @@ const movieResolvers = {
             return movie;
         },
         updateMovie: async (_, args) => {
-            if (!args.id || !args.name || !args.director_name || !args.production_house || args.release_date || args.rating) {
+            if (!args.id || !args.name || !args.director_name || !args.production_house || !args.release_date || !args.rating) {
                 throw new GraphQLError("All parameters are required", {
                     extensions: {
                         code: "MISSING_PARAM",
@@ -156,3 +157,5 @@ const movieResolvers = {
         }
     }
 }
+
+export default movieResolvers;
